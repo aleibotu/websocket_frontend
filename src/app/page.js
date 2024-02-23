@@ -2,7 +2,7 @@
 import useWebSocket from "react-use-websocket"
 
 export default function Home() {
-    const WS_URL = "wss://127.0.0.1:3001"
+    const WS_URL = "wss://socketsbay.com/wss/v2/1/demo/"
 
     const { lastJsonMessage } = useWebSocket(
         WS_URL,
