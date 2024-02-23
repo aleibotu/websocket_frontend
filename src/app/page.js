@@ -2,6 +2,7 @@
 import useWebSocket from "react-use-websocket"
 
 export default function Home() {
+    // just test address.
     const WS_URL = "wss://websocket.aleivc.com/wss"
 
     const { lastJsonMessage } = useWebSocket(
