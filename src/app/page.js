@@ -1,21 +1,19 @@
 'use client'
-import useWebSocket from "react-use-websocket"
+import {useEffect, useState} from "react";
 
 export default function Home() {
-    // just test address.
-    const WS_URL = "wss://websocket.aleivc.com/wss"
-
-    const { lastJsonMessage } = useWebSocket(
-        WS_URL,
-        {
-            share: false,
-            shouldReconnect: () => true,
-        },
-    )
-
+    const [msg, setMsg] = useState("")
+    useEffect(() => {
+        const client = new WebSocket("wss://websocket.aleivc.com/wss");
+        client.onmessage = (event) => {
+            console.log(event.data)
+            setMsg(current => current += event.data);
+        }
+    }, [])
     return (
         <div>
-            {JSON.stringify(lastJsonMessage)}
+            some data
+            {msg}
         </div>
     );
 };
