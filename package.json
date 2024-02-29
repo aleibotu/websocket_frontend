@@ -9,12 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.1.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-use-websocket": "^4.7.0",
-    "socket.io-client": "^4.7.4",
-    "ws": "^8.16.0"
+      "@ant-design/nextjs-registry": "^1.0.0",
+      "antd": "^5.14.2",
+      "chart.js": "^3.9.1",
+      "chartjs-adapter-luxon": "^1.2.0",
+      "chartjs-plugin-streaming": "^2.0.0",
+      "luxon": "^3.0.1",
+      "moment": "^2.30.1",
+      "mongodb": "^6.3.0",
+      "mqtt": "^5.3.6",
+      "next": "14.1.0",
+      "react": "^18",
+      "react-chartjs-2": "^4.2.0"
   },
   "devDependencies": {
     "eslint": "^8",
