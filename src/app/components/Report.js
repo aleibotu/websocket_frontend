@@ -66,7 +66,6 @@ function CustomChart() {
     )
 }
 
-
 function HistoryChart() {
     // 查到数据， 把这组数据的label 更改，同时更改 data，就行。
     const data = {
@@ -95,7 +94,7 @@ function HistoryChart() {
     )
 }
 
-function RealTimeChart({data}) {
+function RealTimeChart() {
     const [chartData, setChartData] = useState({
         datasets: [{
             label: '# of Votes',
@@ -105,35 +104,13 @@ function RealTimeChart({data}) {
             borderWidth: 1,
         }]
     });
-    const topic = ''
 
     useEffect(() => {
-        const clientId = "emqx_react_" + Math.random().toString(16).substring(2, 8);
-        const username = process.env.NEXT_PUBLIC_MQTT_USER_NAME;
-        const password = process.env.NEXT_PUBLIC_MQTT_PASS;
+        const client = new WebSocket(`wss://websocket.aleivc.com/wss`);
 
-        const client = mqtt.connect(`wss://${process.env.NEXT_PUBLIC_MQTT_BROKER_HOST}/wss`, {
-            clientId,
-            username,
-            password,
-        });
-
-        client.on("connect", (packet) => {
-            client.subscribe(topic, (err) => {
-                if (!err) {
-                    console.log(err);
-                }
-            })
-        })
-
-        client.on("message", (topic, message) => {
-            const msg = JSON.parse(message.toString());
-            updateChartData(msg);
-        })
-
-        return () => {
-            client.end(); // Clean up by disconnecting client on unmount
-        };
+        client.onmessage = (event) => {
+            updateChartData(JSON.parse(event.data))
+        }
     }, [])
 
     const updateChartData = (msg) => {
@@ -169,7 +146,6 @@ function RealTimeChart({data}) {
         },
         responsive: true
     }
-
 
     return (
         <div style={{width: '100%'}}>
