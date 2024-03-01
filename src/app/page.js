@@ -1,31 +1,32 @@
-'use client'
-import {useEffect} from "react";
-import mqtt from "mqtt";
+import {MongoClient} from 'mongodb'
+import Report from "@/app/components/Report";
 
-export default function Home() {
-    useEffect(() => {
-        const client = mqtt.connect(`wss://websocket.aleivc.com/wss`);
+const {
+    MONGO_USER,
+    MONGO_PASS,
+    MONGO_HOST,
+    MONGO_PORT,
+    MONGO_DATABASE,
+    MONGO_COLLECTION,
+} = process.env;
+async function connectToMongo() {
+    const url = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+    const client = new MongoClient(url);
+    await client.connect();
+    console.log('Connected successfully to MongoDB server');
+    return await client.db(MONGO_DATABASE).collection(MONGO_COLLECTION).find({
+        timestamp: {
+            $gte: new Date("2024-02-29T10:00:00Z"),
+            $lt: new Date("2024-02-29T11:00:00Z")
+        }
+    }).toArray();
+}
+export default async function Home() {
+    const data = await connectToMongo();
 
-        client.on("connect", (packet) => {
-            client.subscribe(topic, (err) => {
-                if (!err) {
-                    console.log(err);
-                }
-            })
-        })
-
-        client.on("message", (topic, message) => {
-            const msg = JSON.parse(message.toString());
-            console.log(msg);
-        })
-
-        return () => {
-            client.end(); // Clean up by disconnecting client on unmount
-        };
-    }, [])
     return (
         <>
-            test
+            <Report data={data}/>
         </>
     )
 };
