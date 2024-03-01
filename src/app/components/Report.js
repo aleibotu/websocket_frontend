@@ -105,14 +105,14 @@ function RealTimeChart({data}) {
             borderWidth: 1,
         }]
     });
-    const topic = 'sensor/001/temp012'
+    const topic = ''
 
     useEffect(() => {
         const clientId = "emqx_react_" + Math.random().toString(16).substring(2, 8);
         const username = process.env.NEXT_PUBLIC_MQTT_USER_NAME;
         const password = process.env.NEXT_PUBLIC_MQTT_PASS;
 
-        const client = mqtt.connect(`ws://${process.env.NEXT_PUBLIC_MQTT_BROKER_HOST}/mqtt`, {
+        const client = mqtt.connect(`wss://${process.env.NEXT_PUBLIC_MQTT_BROKER_HOST}/wss`, {
             clientId,
             username,
             password,
