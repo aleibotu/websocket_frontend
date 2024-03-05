@@ -1,5 +1,4 @@
 'use client';
-import mqtt from 'mqtt';
 import React, {useEffect, useState} from 'react';
 import {Chart, CategoryScale, LinearScale, PointElement, LineElement} from 'chart.js'
 import {Line} from 'react-chartjs-2';
@@ -106,7 +105,7 @@ function RealTimeChart() {
     });
 
     useEffect(() => {
-        const client = new WebSocket(`wss://websocket.aleivc.com/wss`);
+        const client = new WebSocket(`wss://5g.mxzn.top/wss`);
 
         client.onmessage = (event) => {
             updateChartData(JSON.parse(event.data))
@@ -115,7 +114,7 @@ function RealTimeChart() {
 
     const updateChartData = (msg) => {
         const {list} = msg;
-        const value = list && list[3] ? parseInt(list[3].value) : 0;
+        const value = list && list[10] ? parseInt(list[10].value) : 0;
 
         setChartData(prevChartData => ({
             datasets: prevChartData.datasets.map(dataset => ({
@@ -141,7 +140,7 @@ function RealTimeChart() {
             y: {
                 beginAtZero: true,
                 min: 0,
-                max: 100
+                max: 20
             }
         },
         responsive: true
