@@ -22,11 +22,11 @@ async function connectToMongo() {
     }).toArray();
 }
 export default async function Home() {
-    const data = await connectToMongo();
+    // const data = await connectToMongo();
 
     return (
         <>
-            <Report data={data}/>
+            <Report />
         </>
     )
 };
