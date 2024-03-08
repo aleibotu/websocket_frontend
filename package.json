@@ -9,18 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/charts": "v1",
     "@ant-design/nextjs-registry": "^1.0.0",
+    "@deck.gl/layers": "^8.9.35",
+    "@deck.gl/react": "^8.9.35",
     "antd": "^5.14.2",
     "chart.js": "^3.9.1",
     "chartjs-adapter-luxon": "^1.2.0",
     "chartjs-plugin-streaming": "^2.0.0",
+    "deck.gl": "^8.9.35",
     "luxon": "^3.0.1",
+    "mapbox-gl": "^3.2.0",
+    "maplibre-gl": "^4.1.0",
     "moment": "^2.30.1",
     "mongodb": "^6.3.0",
     "mqtt": "^5.3.6",
     "next": "14.1.0",
     "react": "^18",
-    "react-chartjs-2": "^4.2.0"
+    "react-chartjs-2": "^4.2.0",
+    "react-dom": "^18.2.0",
+    "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
     "eslint": "^8",
