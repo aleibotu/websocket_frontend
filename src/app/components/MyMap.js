@@ -20,7 +20,7 @@ export default function MyMap() {
     return (
         <div onContextMenu={(e) => e.preventDefault()}>
             <div style={{zIndex: 11, position: 'absolute'}}>
-                <MyChart />
+                {/*<MyChart />*/}
             </div>
             <div style={{zIndex: 10}}>
                 <DeckGL
