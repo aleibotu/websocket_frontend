@@ -1,9 +1,9 @@
-import MyMap from "@/app/components/MyMap";
+import Report from "@/app/Report";
 
 export default async function Home() {
     return (
         <>
-            <MyMap />
+            <Report />
         </>
     )
 };
