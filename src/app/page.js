@@ -1,5 +1,5 @@
 import {MongoClient} from 'mongodb'
-import Report from "@/app/components/Report";
+import Report from "@/components/Report";
 
 const {
     MONGO_USER,
