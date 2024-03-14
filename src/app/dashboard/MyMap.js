@@ -4,8 +4,6 @@ import DeckGL from '@deck.gl/react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css'
 
-import MyChart from "@/app/components/MyChart";
-
 // Viewport settings
 const INITIAL_VIEW_STATE = {
     longitude: 121.95,
