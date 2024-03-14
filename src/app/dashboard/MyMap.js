@@ -1,7 +1,7 @@
 'use client';
 import {Map} from 'react-map-gl'
-import DeckGL from '@deck.gl/react';
-import maplibregl from 'maplibre-gl';
+import DeckGL from '@deck.gl/react'
+import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
 // Viewport settings
