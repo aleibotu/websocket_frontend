@@ -1,6 +1,6 @@
 'use client'
 import {useEffect, useRef} from "react";
-import {Bar, DualAxes, Gauge, Liquid, Pie, RadialGraph, TinyArea} from "@ant-design/charts";
+import {Bar, DualAxes, Gauge, Liquid, Pie, Radar, RadialGraph, TinyArea} from "@ant-design/charts";
 
 export const MyPie = () => {
     const data = [
@@ -67,9 +67,7 @@ export const MyPie = () => {
         },
     };
     return (
-        <div style={{position: 'absolute', width: 300, height: 200}}>
-            <Pie {...config} />
-        </div>
+        <Pie autoFit {...config} />
     );
 };
 
@@ -350,75 +348,17 @@ export const MyTinyArea = () => {
 }
 
 export const MyGauge = () => {
-    const ticks = [0, 1 / 3, 2 / 3, 1];
-    const color = ['#F4664A', '#FAAD14', '#30BF78'];
-    const graphRef = useRef(null);
-    useEffect(() => {
-        if (graphRef.current) {
-            let data = 0.7;
-            const interval = setInterval(() => {
-                if (data >= 1.5) {
-                    clearInterval(interval);
-                }
-
-                data += 0.005;
-                graphRef.current.changeData(data > 1 ? data - 1 : data);
-            }, 100);
-        }
-    }, [graphRef]);
     const config = {
-        percent: 0,
-        range: {
-            ticks: [0, 1],
-            color: ['l(0) 0:#F4664A 0.5:#FAAD14 1:#30BF78'],
+        width: 720,
+        height: 720,
+        autoFit: true,
+        data: {
+            target: 120,
+            total: 400,
+            name: 'score',
         },
-        indicator: {
-            pointer: {
-                style: {
-                    stroke: '#D0D0D0',
-                },
-            },
-            pin: {
-                style: {
-                    stroke: '#D0D0D0',
-                },
-            },
-        },
-        statistic: {
-            title: {
-                formatter: ({ percent }) => {
-                    if (percent < ticks[1]) {
-                        return '差';
-                    }
-
-                    if (percent < ticks[2]) {
-                        return '中';
-                    }
-
-                    return '优';
-                },
-                style: ({ percent }) => {
-                    return {
-                        fontSize: '24px',
-                        lineHeight: 1,
-                        color: percent < ticks[1] ? color[0] : percent < ticks[2] ? color[1] : color[2],
-                    };
-                },
-            },
-            content: {
-                offsetY: 36,
-                style: {
-                    fontSize: '24px',
-                    color: '#4B535E',
-                },
-                // formatter: () => '系统表现',
-            },
-        },
-        onReady: (plot) => {
-            graphRef.current = plot;
-        },
+        legend: false,
     };
-
     return <Gauge {...config} />;
 }
 
@@ -529,4 +469,46 @@ export const MyLiquid = () => {
         },
     };
     return <Liquid {...config} />;
+}
+const data = [
+    { item: 'Design', type: 'a', score: 70 },
+    { item: 'Design', type: 'b', score: 30 },
+    { item: 'Development', type: 'a', score: 60 },
+    { item: 'Development', type: 'b', score: 70 },
+    { item: 'Marketing', type: 'a', score: 50 },
+    { item: 'Marketing', type: 'b', score: 60 },
+    { item: 'Users', type: 'a', score: 40 },
+    { item: 'Users', type: 'b', score: 50 },
+    { item: 'Test', type: 'a', score: 60 },
+    { item: 'Test', type: 'b', score: 70 },
+    { item: 'Language', type: 'a', score: 70 },
+    { item: 'Language', type: 'b', score: 50 },
+    { item: 'Technology', type: 'a', score: 50 },
+    { item: 'Technology', type: 'b', score: 40 },
+    { item: 'Support', type: 'a', score: 30 },
+    { item: 'Support', type: 'b', score: 40 },
+    { item: 'Sales', type: 'a', score: 60 },
+    { item: 'Sales', type: 'b', score: 40 },
+    { item: 'UX', type: 'a', score: 50 },
+    { item: 'UX', type: 'b', score: 60 },
+];
+export const MyRadar = () => {
+    const config = {
+        data,
+        xField: 'item',
+        yField: 'score',
+        colorField: 'type',
+        shapeField: 'smooth',
+        area: {
+            style: {
+                fillOpacity: 0.5,
+            },
+        },
+        scale: { x: { padding: 0.5, align: 0 }, y: { tickCount: 5, domainMax: 80 } },
+        axis: { x: { grid: true }, y: { zIndex: 1, title: false } },
+        style: {
+            lineWidth: 2,
+        },
+    };
+    return <Radar {...config} />;
 }

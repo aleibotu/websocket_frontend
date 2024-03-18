@@ -1,9 +1,8 @@
 'use client';
 import {Map} from 'react-map-gl'
 import DeckGL from '@deck.gl/react'
-import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
 
+import "mapbox-gl/dist/mapbox-gl.css";
 // Viewport settings
 const INITIAL_VIEW_STATE = {
     longitude: 121.95,
@@ -28,9 +27,8 @@ export default function MyMap() {
                     onContextMenu={(e) => e.preventDefault()}
                 >
                     <Map
-                        reuseMaps
-                        mapLib={maplibregl}
-                        mapStyle='https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json'
+                        mapboxAccessToken={'pk.eyJ1IjoiYWxlaXZjIiwiYSI6ImNreTJjNGc2azBrZ2MydnJtbDY1bWVkZGsifQ.q71gMIIPSTNoz6VbWLUanw'}
+                        mapStyle='mapbox://styles/mapbox/dark-v9'
                         preventStyleDiffing={true}
                     />
                 </DeckGL>
