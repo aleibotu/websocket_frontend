@@ -110,7 +110,7 @@ function HistoryChart() {
     )
 }
 
-function RealTimeChart({msg, topicStr}) {
+export function RealTimeChart({msg, topicStr}) {
     const [dataSets, setDataSets] = useState([]);
 
     useEffect(() => {
