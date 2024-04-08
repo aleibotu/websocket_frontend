@@ -1,0 +1,19 @@
+.container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #222629; /* For contrast */
+    color: #fff;
+}
+.card {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #474b4f;
+    cursor: pointer;
+    user-select: none;
+}

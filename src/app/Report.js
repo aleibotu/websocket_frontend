@@ -34,12 +34,32 @@ export default function Report() {
             key: '3',
             label: '土壤监测站',
             children: <CustomChart topic="sensor/003" msg={msg}/>
+        },
+        {
+            key: '4',
+            label: 'xx监测站',
+            children: <CustomChart topic="sensor/004" msg={msg}/>
+        },
+        {
+            key: '5',
+            label: 'xx监测站',
+            children: <CustomChart topic="sensor/005" msg={msg}/>
+        },
+        {
+            key: '6',
+            label: 'xx监测站',
+            children: <CustomChart topic="sensor/006" msg={msg}/>
+        },
+        {
+            key: '7',
+            label: 'xx监测站',
+            children: <CustomChart topic="sensor/007" msg={msg}/>
         }
     ]
 
     return (
         <>
-            <Collapse items={items}/>
+            <Collapse accordion destroyInactivePanel defaultActiveKey={['1']} items={items}/>
         </>
     )
 }
@@ -163,7 +183,7 @@ export function RealTimeChart({msg, topicStr}) {
                 type: 'realtime',
                 realtime: {
                     delay: 3000,
-                    duration: 6 * 10 * 1000,
+                    duration: 10 * 6 * 10 * 1000,
                 }
             },
             y: {
